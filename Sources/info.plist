@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>github.purpltentacle.proxmoxcontrol</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AA25E94D-60EB-47E2-A14F-0BFD01430463</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AA25E94D-60EB-47E2-A14F-0BFD01430463</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C9FA9FA2-28A9-4A68-90F7-D79A4123A5B8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>F95F971A-20C4-42BD-BEDD-E9A216E78AD6</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>5999D65F-1031-4FE4-A323-BC76055AA0BC</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>FFFD1DD3-9051-4CC6-BD53-D3AD93155DED</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>purpltentacle</string>
+	<key>description</key>
+	<string>Starts and stops Proxmox VMs</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Proxmox control</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>ok</string>
+				<key>title</key>
+				<string>ok</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>C9FA9FA2-28A9-4A68-90F7-D79A4123A5B8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>ssh $PROXMOX_USER@$PROXMOX_HOST -p $SSH_PORT '{query}'
+echo -n $?</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>pve</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait while fetching VM data ...</string>
+				<key>script</key>
+				<string>python qm_handler.py {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Shows the running and stopped VMs</string>
+				<key>title</key>
+				<string>Starts and stops VMs</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>FFFD1DD3-9051-4CC6-BD53-D3AD93155DED</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<false/>
+						<key>matchmode</key>
+						<integer>0</integer>
+						<key>matchstring</key>
+						<string>0</string>
+						<key>outputlabel</key>
+						<string>ok</string>
+						<key>uid</key>
+						<string>F95F971A-20C4-42BD-BEDD-E9A216E78AD6</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>AA25E94D-60EB-47E2-A14F-0BFD01430463</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>nok</string>
+				<key>title</key>
+				<string>nok</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>5999D65F-1031-4FE4-A323-BC76055AA0BC</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string>This workflow starts and stops virtual machines or LXC-containers (referred to as machines in the following text) in Proxmox.
+
+In order to do so, it must be possible to ssh into the Proxmox-server.
+
+Just open Alfred and type 'pve' to start the workflow. After that, all machines running on Proxmox will be listet. Selecting an entry starts the machine (if it is stopped) and vice versa.
+
+Providing the argument 'start' will filter the list to all stopped machines, providing the argument 'stop' all running machines are shown.
+
+The following environment variables in Alfred must be set:
+
+PROXMOX_USER: the user name of the ssh-user
+PROXMOX_HOST: the ip/hostname of Proxmox
+SSH_PORT: the port where ssh is listening
+
+Optional variables:
+
+EXCLUDED_VMS: comma-separated list of all machine-ids which should not be displayed in the result-list, in order to prevent the user from accidentally shutting down machines. Example: 100,107,900
+
+Proxmox Logo was taken from https://www.proxmox.com, https://www.proxmox.com/en/news/media-kit
+
+This workflow uses the Alfred-workflow library from Dean Jackson, http://www.deanishe.net/alfred-workflow/</string>
+	<key>uidata</key>
+	<dict>
+		<key>5999D65F-1031-4FE4-A323-BC76055AA0BC</key>
+		<dict>
+			<key>xpos</key>
+			<integer>640</integer>
+			<key>ypos</key>
+			<integer>195</integer>
+		</dict>
+		<key>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</key>
+		<dict>
+			<key>xpos</key>
+			<integer>305</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+		<key>AA25E94D-60EB-47E2-A14F-0BFD01430463</key>
+		<dict>
+			<key>xpos</key>
+			<integer>510</integer>
+			<key>ypos</key>
+			<integer>120</integer>
+		</dict>
+		<key>C9FA9FA2-28A9-4A68-90F7-D79A4123A5B8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>640</integer>
+			<key>ypos</key>
+			<integer>50</integer>
+		</dict>
+		<key>FFFD1DD3-9051-4CC6-BD53-D3AD93155DED</key>
+		<dict>
+			<key>xpos</key>
+			<integer>60</integer>
+			<key>ypos</key>
+			<integer>100</integer>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<dict>
+		<key>EXCLUDED_VMS</key>
+		<string></string>
+		<key>PROXMOX_HOST</key>
+		<string></string>
+		<key>PROXMOX_USER</key>
+		<string></string>
+		<key>SSH_PORT</key>
+		<string>22</string>
+	</dict>
+	<key>variablesdontexport</key>
+	<array>
+		<string>EXCLUDED_VMS</string>
+		<string>PROXMOX_USER</string>
+		<string>PROXMOX_HOST</string>
+	</array>
+	<key>version</key>
+	<string>0.1.0</string>
+	<key>webaddress</key>
+	<string>https://github.com/purpltentacle/ProxmoxControl</string>
+</dict>
+</plist>
