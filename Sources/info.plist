@@ -8,11 +8,11 @@
 	<string>Tools</string>
 	<key>connections</key>
 	<dict>
-		<key>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</key>
+		<key>05181540-6941-4604-B0CA-C3430D5C0A95</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>AA25E94D-60EB-47E2-A14F-0BFD01430463</string>
+				<string>2DA6F823-2447-4199-B15A-0AE796710862</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -21,23 +21,11 @@
 				<false/>
 			</dict>
 		</array>
-		<key>AA25E94D-60EB-47E2-A14F-0BFD01430463</key>
+		<key>2DA6F823-2447-4199-B15A-0AE796710862</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>C9FA9FA2-28A9-4A68-90F7-D79A4123A5B8</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>sourceoutputuid</key>
-				<string>F95F971A-20C4-42BD-BEDD-E9A216E78AD6</string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>5999D65F-1031-4FE4-A323-BC76055AA0BC</string>
+				<string>844C7C01-04FD-4093-858B-9B142EC5E8C8</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -46,11 +34,24 @@
 				<false/>
 			</dict>
 		</array>
-		<key>FFFD1DD3-9051-4CC6-BD53-D3AD93155DED</key>
+		<key>9360FD2F-C792-4B27-A203-DB010746A0B7</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</string>
+				<string>2DA6F823-2447-4199-B15A-0AE796710862</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>A0144335-0122-4B98-A6BB-279A4B9A16F9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2DA6F823-2447-4199-B15A-0AE796710862</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -63,7 +64,7 @@
 	<key>createdby</key>
 	<string>purpltentacle</string>
 	<key>description</key>
-	<string>Starts and stops Proxmox VMs</string>
+	<string>Starts and stops Proxmox machines</string>
 	<key>disabled</key>
 	<false/>
 	<key>name</key>
@@ -80,14 +81,14 @@
 				<key>removeextension</key>
 				<false/>
 				<key>text</key>
-				<string>ok</string>
+				<string>{var:WF_ACTION}</string>
 				<key>title</key>
-				<string>ok</string>
+				<string>{var:WF_RESULT}</string>
 			</dict>
 			<key>type</key>
 			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>C9FA9FA2-28A9-4A68-90F7-D79A4123A5B8</string>
+			<string>844C7C01-04FD-4093-858B-9B142EC5E8C8</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -99,10 +100,10 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>ssh $PROXMOX_USER@$PROXMOX_HOST -p $SSH_PORT '{query}'
-echo -n $?</string>
+				<string>export PATH=${PYTHON_PATH}:${PATH}
+python qm_handler.py set "$1"</string>
 				<key>scriptargtype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>scriptfile</key>
 				<string></string>
 				<key>type</key>
@@ -111,7 +112,7 @@ echo -n $?</string>
 			<key>type</key>
 			<string>alfred.workflow.action.script</string>
 			<key>uid</key>
-			<string>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</string>
+			<string>2DA6F823-2447-4199-B15A-0AE796710862</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
@@ -119,7 +120,57 @@ echo -n $?</string>
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<false/>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>pvn</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait while fetching VM data ...</string>
+				<key>script</key>
+				<string>export PATH=${PYTHON_PATH}:${PATH}
+python qm_handler.py machine {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Shows the running and stopped VMs</string>
+				<key>title</key>
+				<string>Starts and stops VMs</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>9360FD2F-C792-4B27-A203-DB010746A0B7</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>0</integer>
 				<key>argumenttreatemptyqueryasnil</key>
@@ -143,7 +194,8 @@ echo -n $?</string>
 				<key>runningsubtext</key>
 				<string>Please wait while fetching VM data ...</string>
 				<key>script</key>
-				<string>python qm_handler.py {query}</string>
+				<string>export PATH=${PYTHON_PATH}:${PATH}
+python qm_handler.py status {query}</string>
 				<key>scriptargtype</key>
 				<integer>0</integer>
 				<key>scriptfile</key>
@@ -160,60 +212,59 @@ echo -n $?</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>FFFD1DD3-9051-4CC6-BD53-D3AD93155DED</string>
+			<string>A0144335-0122-4B98-A6BB-279A4B9A16F9</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>conditions</key>
-				<array>
-					<dict>
-						<key>inputstring</key>
-						<string></string>
-						<key>matchcasesensitive</key>
-						<false/>
-						<key>matchmode</key>
-						<integer>0</integer>
-						<key>matchstring</key>
-						<string>0</string>
-						<key>outputlabel</key>
-						<string>ok</string>
-						<key>uid</key>
-						<string>F95F971A-20C4-42BD-BEDD-E9A216E78AD6</string>
-					</dict>
-				</array>
-				<key>elselabel</key>
-				<string>else</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.conditional</string>
-			<key>uid</key>
-			<string>AA25E94D-60EB-47E2-A14F-0BFD01430463</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>lastpathcomponent</key>
-				<false/>
-				<key>onlyshowifquerypopulated</key>
-				<false/>
-				<key>removeextension</key>
-				<false/>
-				<key>text</key>
-				<string>nok</string>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<true/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>keyword</key>
+				<string>pvt</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please wait while fetching VM data ...</string>
+				<key>script</key>
+				<string>export PATH=${PYTHON_PATH}:${PATH}
+python qm_handler.py type {query}</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Filters for machine type (lxc, qemu)</string>
 				<key>title</key>
-				<string>nok</string>
+				<string>Starts and stops VMs</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.output.notification</string>
+			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>5999D65F-1031-4FE4-A323-BC76055AA0BC</string>
+			<string>05181540-6941-4604-B0CA-C3430D5C0A95</string>
 			<key>version</key>
-			<integer>1</integer>
+			<integer>3</integer>
 		</dict>
 	</array>
 	<key>readme</key>
@@ -221,15 +272,18 @@ echo -n $?</string>
 
 In order to do so, it must be possible to ssh into the Proxmox-server.
 
-Just open Alfred and type 'pve' to start the workflow. After that, all machines running on Proxmox will be listet. Selecting an entry starts the machine (if it is stopped) and vice versa.
+The workflow can be used to filter for
 
-Providing the argument 'start' will filter the list to all stopped machines, providing the argument 'stop' all running machines are shown.
+* the status of the machines (`pve`),
+* the machine names (`pvn`), or
+* the type of the machines (`pvt`).
 
 The following environment variables in Alfred must be set:
 
 PROXMOX_USER: the user name of the ssh-user
 PROXMOX_HOST: the ip/hostname of Proxmox
 SSH_PORT: the port where ssh is listening
+PYTHON_PATH: the path(s) where python (2.7) can be found. Defaulted to Homebrew
 
 Optional variables:
 
@@ -240,50 +294,52 @@ Proxmox Logo was taken from https://www.proxmox.com, https://www.proxmox.com/en/
 This workflow uses the Alfred-workflow library from Dean Jackson, http://www.deanishe.net/alfred-workflow/</string>
 	<key>uidata</key>
 	<dict>
-		<key>5999D65F-1031-4FE4-A323-BC76055AA0BC</key>
+		<key>05181540-6941-4604-B0CA-C3430D5C0A95</key>
 		<dict>
 			<key>xpos</key>
-			<integer>640</integer>
+			<integer>85</integer>
 			<key>ypos</key>
-			<integer>195</integer>
+			<integer>360</integer>
 		</dict>
-		<key>8B8590BD-A1D9-40DB-B5B0-7099F79F08BF</key>
+		<key>2DA6F823-2447-4199-B15A-0AE796710862</key>
 		<dict>
 			<key>xpos</key>
-			<integer>305</integer>
+			<integer>330</integer>
 			<key>ypos</key>
-			<integer>100</integer>
-		</dict>
-		<key>AA25E94D-60EB-47E2-A14F-0BFD01430463</key>
-		<dict>
-			<key>xpos</key>
-			<integer>510</integer>
-			<key>ypos</key>
-			<integer>120</integer>
-		</dict>
-		<key>C9FA9FA2-28A9-4A68-90F7-D79A4123A5B8</key>
-		<dict>
-			<key>xpos</key>
-			<integer>640</integer>
-			<key>ypos</key>
-			<integer>50</integer>
-		</dict>
-		<key>FFFD1DD3-9051-4CC6-BD53-D3AD93155DED</key>
-		<dict>
-			<key>xpos</key>
 			<integer>60</integer>
+		</dict>
+		<key>844C7C01-04FD-4093-858B-9B142EC5E8C8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>585</integer>
 			<key>ypos</key>
-			<integer>100</integer>
+			<integer>60</integer>
+		</dict>
+		<key>9360FD2F-C792-4B27-A203-DB010746A0B7</key>
+		<dict>
+			<key>xpos</key>
+			<integer>85</integer>
+			<key>ypos</key>
+			<integer>60</integer>
+		</dict>
+		<key>A0144335-0122-4B98-A6BB-279A4B9A16F9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>85</integer>
+			<key>ypos</key>
+			<integer>210</integer>
 		</dict>
 	</dict>
 	<key>variables</key>
 	<dict>
 		<key>EXCLUDED_VMS</key>
-		<string></string>
+		<string>100,101,103,107,900,109</string>
 		<key>PROXMOX_HOST</key>
-		<string></string>
+		<string>192.168.11.254</string>
 		<key>PROXMOX_USER</key>
-		<string></string>
+		<string>root</string>
+		<key>PYTHON_PATH</key>
+		<string>/opt/homebrew/bin:/usr/local/bin</string>
 		<key>SSH_PORT</key>
 		<string>22</string>
 	</dict>
@@ -294,7 +350,7 @@ This workflow uses the Alfred-workflow library from Dean Jackson, http://www.dea
 		<string>PROXMOX_HOST</string>
 	</array>
 	<key>version</key>
-	<string>0.1.0</string>
+	<string>0.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/purpltentacle/ProxmoxControl</string>
 </dict>
